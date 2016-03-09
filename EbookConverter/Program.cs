@@ -23,8 +23,10 @@ namespace EbookConverter
             DoWork(python, string.Format(pythonArgs, path));
             RemoveFiles(path,"*_moh.epub");
             DoWork(calibre, string.Format(calibreArgs, path));
-            var mobi = Directory.GetFiles(path, "*.mobi").FirstOrDefault();
-            DoWork(mail, string.Format(mailArgs, from, to, mobi));
+            foreach (var mobi in Directory.GetFiles(path, "*.mobi"))
+            {
+                DoWork(mail, string.Format(mailArgs, from, to, mobi));
+            }
             RemoveFiles(path);
             Console.WriteLine("******************************************************");
             Console.WriteLine("*===================End Program !!===================*");
