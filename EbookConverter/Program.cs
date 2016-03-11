@@ -12,7 +12,7 @@ namespace EbookConverter
         private const string python = "python";
         private const string calibre = "calibredb ";
         private const string pythonArgs = @"epubQTools\epubQTools_0.7-py.zip {0} -n -e --book-margin -40 -kd";
-        private const string calibreArgs = @"add -1 {0}";
+        private const string calibreArgs = @"add --add=""*.*"" {0}";
         private static string path = ConfigurationManager.AppSettings["Path"];
         private const string mail = "calibre-smtp";
         private static string from = ConfigurationManager.AppSettings["MailFrom"];
