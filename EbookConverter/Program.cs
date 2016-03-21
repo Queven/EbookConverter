@@ -21,7 +21,9 @@ namespace EbookConverter
         static void Main(string[] args)
         {
             DoWork(python, string.Format(pythonArgs, path));
+            RenameFile(path, "*_moh.mobi");
             RemoveFiles(path,"*_moh.epub");
+            
             DoWork(calibre, string.Format(calibreArgs, path));
             foreach (var mobi in Directory.GetFiles(path, "*.mobi"))
             {
@@ -33,6 +35,14 @@ namespace EbookConverter
             Console.WriteLine("******************************************************");
             Console.ReadKey();
             
+        }
+
+        private static void RenameFile(string path, string pattern)
+        {
+            foreach (var file in Directory.GetFiles(path, pattern))
+            {
+                File.Move(file, file.Replace("_moh",""));
+            }
         }
 
         private static void RemoveFiles(string path,string pattern="*")
