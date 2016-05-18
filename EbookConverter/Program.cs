@@ -9,9 +9,9 @@ namespace EbookConverter
     class Program
     {
         
-        private const string python = "python";
+        private const string epubQTools = @"epubQTools\epubQTools.exe";
         private const string calibre = "calibredb ";
-        private const string pythonArgs = @"epubQTools\epubQTools_0.7-py.zip {0} -n -e --book-margin -40 -kd";
+        private const string epubQToolsArgs = @" {0} -n -e --book-margin -40 -kd";
         private const string calibreArgs = @"add --add=""*.*"" {0}";
         private static string path = ConfigurationManager.AppSettings["Path"];
         private const string mail = "calibre-smtp";
@@ -20,7 +20,7 @@ namespace EbookConverter
         private const string mailArgs = "{0} {1} \"book\" -a \"{2}\"";
         static void Main(string[] args)
         {
-            DoWork(python, string.Format(pythonArgs, path));
+            DoWork(epubQTools, string.Format(epubQToolsArgs, path));
             RenameFile(path, "*_moh.mobi");
             RemoveFiles(path,"*_moh.epub");
             
